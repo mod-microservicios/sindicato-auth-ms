@@ -1,5 +1,5 @@
 # Dockerfile para sindicato-auth-ms
-FROM node:20-alpine AS builder
+FROM node:22.18.0-alpine AS builder
 
 WORKDIR /app
 
@@ -20,7 +20,7 @@ RUN DATABASE_URL="postgresql://dummy:dummy@dummy:5432/dummy?schema=public" npx p
 RUN npm run build
 
 # Etapa de producción
-FROM node:20-alpine AS production
+FROM node:22.18.0-alpine AS production
 
 WORKDIR /app
 
@@ -43,5 +43,5 @@ COPY --from=builder /app/dist ./dist
 EXPOSE 3001
 
 # Comando para ejecutar las migraciones y luego iniciar la aplicación
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main.js"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/src/main.js"]
 

@@ -4,12 +4,12 @@ dist
 coverage
 .git
 .gitignore
+.env
 .env.local
-*.md
 test
 .eslintrc*
 .prettierrc*
-tsconfig*.json
 .vscode
 .idea
 
+generated
